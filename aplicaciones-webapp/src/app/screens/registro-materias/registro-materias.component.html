@@ -1,0 +1,107 @@
+<section class = "registro-maters">
+    <div class="wrapper">
+        <!--- engloba todo el formulario -->
+        <div class="section-registro">
+            <!--- va el titulo del componente--->
+            <div class = "header-registro">
+                <mat-icon class = "icon-back" (click)="regresar()">arrow_back</mat-icon>
+            
+                <span *ngIf="!editar" class="title">REGISTRAR MATERIA</span>
+                <span *ngIf="editar" class="title">ACTUALIZAR</span>
+                <mat-icon class="icon-forward">arrow_forward</mat-icon>
+            </div>
+            <div class="body-registro">
+                <mat-form-field class="mat-input" appearance="fill">
+                    <mat-label>NRC</mat-label>
+                    <input matInput [(ngModel)]="maters.nrc" name="id" placeholder="ESCRIBE NRC">
+                </mat-form-field>
+                <div *ngIf="errors.nrc" class="invalid-feedback">{{ errors.nrc }}</div>
+
+                <mat-form-field class="mat-input" appearance="fill">
+                    <mat-label>MATERIAS</mat-label>
+                    <input matInput [(ngModel)]="maters.materia" name="materia" placeholder="ESCRIBE EL NOMBRE DE LAS MATERIAS">
+                </mat-form-field>
+                <div *ngIf="errors.materia" class="invalid-feedback">{{ errors.materia }}</div>
+
+                <mat-form-field class="mat-input" appearance="fill">
+                    <mat-label>SECCION</mat-label>
+                    <input matInput [(ngModel)]="maters.section"  placeholder="ESCRIBE LA SECCION">
+                </mat-form-field>
+                <div *ngIf="errors.section" class="invalid-feedback">{{ errors.section }}</div>
+
+            
+              
+                <!--<mat-form-field class="mat-input" appearance="fill">  
+                    <mat-label>DIAS DE LA MATERIA</mat-label>  
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="user.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha" type="string"> 
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>-->
+                <mat-form-field class="mat-input" appearance="fill">
+                    <mat-label>DIAS DE LA MATERIA</mat-label>
+                    <mat-select  [(ngModel)]="maters.days">
+                        <mat-option value="LUNES-MARTES-JUEVES">LUNES-MARTES-JUEVES</mat-option>    
+                        <mat-option value="LUNES-MIERCOLES-VIERNES">LUNES-MIERCOLES-VIERNES </mat-option>
+                        <input matInput [(ngModel)]="maters.days" placeholder="dame el maldito dia" type="string">
+                    </mat-select >
+                </mat-form-field>
+                <div *ngIf="errors.days" class="invalid-feedback" >{{ errors.days}}</div>
+
+
+                <mat-form-field class="mat-input" appearance="fill">
+                    <mat-label>HORA INICIO</mat-label>
+                    <input matInput [(ngModel)]="maters.hour_inicial"  aria-label="default time" [format]="12"   [ngxTimepicker]="hora1" placeholder="INICIO">
+                    <ngx-material-timepicker #hora1></ngx-material-timepicker>
+                </mat-form-field>
+                <div *ngIf="errors.hour_inicial" class="invalid-feedback">{{ errors.hour_inicial }}</div>
+
+                <mat-form-field class="mat-input" appearance="fill">
+                    <mat-label>HORA FINAL</mat-label>
+                    <input matInput [(ngModel)]="maters.hour_final"  aria-label="default time" [format]="12"   [ngxTimepicker]="hora2" placeholder="FINAL">
+                    <ngx-material-timepicker #hora2></ngx-material-timepicker>
+                </mat-form-field>
+
+                <!--<mat-form-field >
+                    <mat-label>reloj</mat-label>
+                    <input [(ngModel)]="user.hour" mdc-datetime-picker date="false" time="true" type="text" id="time" short-time="true"
+                           show-todays-date click-outside-to-close="true"
+                           placeholder="Time" auto-ok="true"
+                           min-date="minDate" minute-steps="1"
+                           format="hh:mm a"
+                           ng-change="vm.saveChange()"
+                           ng-model="time">
+                </mat-form-field>-->
+               
+                
+                <div *ngIf="errors.hour_final" class="invalid-feedback">{{ errors.hour_final }}</div>
+
+                <mat-form-field class="mat-input" appearance="fill">
+                    <mat-label>SALON</mat-label>
+                    <input matInput [(ngModel)]="maters.salon" placeholder="ESCRIBE EL SALON">
+                </mat-form-field>
+                <div *ngIf="errors.salon" class="invalid-feedback">{{ errors.salon }}</div>
+
+                <mat-form-field class="mat-input" appearance="fill">
+                    <mat-label>PROGRAMA EDUCATIVO</mat-label>
+                    <mat-select  [(ngModel)]="maters.proed">
+                        <mat-option value="ING. CSC. COMPUTACION">INGENIERIA EN CIENCIAS DE LA COMPUTACION</mat-option>    
+                        <mat-option value="LIC. CSC. COMPUTACION">LICENCIATURA EN CIENCIAS DE LA COMPUTACION </mat-option>
+                        <mat-option value="LIC. TEC. INFORMACION">LICENCIATURA EN TECNOLOGIAS DE LA INFORMACION</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div *ngIf="errors.proed"  class="invalid-feedback">{{ errors.proed }}</div>
+
+
+            
+
+            
+                <div class="section-buttons">  
+                    <button class="btn btn-danger" (click)="regresar()">CANCELAR</button>  
+                    <button *ngIf="!editar" class="btn btn-primary" type="submit" (click)="registrar()">REGISTRAR</button>
+                    <button *ngIf="editar" class="btnt btn-primary" type="submit" (click)="actualizar()"></button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

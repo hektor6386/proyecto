@@ -1,0 +1,103 @@
+<section class = "registro-user">
+    <div class="wrapper">
+        <!--- engloba todo el formulario -->
+        <div class="section-registro">
+            <!--- va el titulo del componente--->
+            <div class = "header-registro">
+                <mat-icon class = "icon-back" (click)="regresar()">arrow_back</mat-icon>
+                <span *ngIf="!editar" class="title">REGISTRARSE</span>
+                <span *ngIf="editar" class="title">ACTUALIZAR USUARIO </span>
+                <mat-icon class="icon-forward">arrow_forward</mat-icon>
+            </div>
+            <div class="body-registro">
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>ID/MATRICULA</mat-label>
+                    <input matInput [(ngModel)]="user.matricula" name="id" placeholder="ESCRIBE ID O MATRICULA">
+                </mat-form-field>
+                <div *ngIf="errors.matricula" class="invalid-feedback">{{ errors.matricula }}</div>
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>NOMBRE</mat-label>
+                    <input matInput [(ngModel)]="user.first_name" placeholder="ESCRIBE NOMBRE">
+                </mat-form-field>
+                <div *ngIf="errors.first_name" class="invalid-feedback">{{ errors.first_name }}</div>
+
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>APELLIDOS</mat-label>
+                    <input matInput [(ngModel)]="user.last_name" placeholder="ESCRIBE APELLIDOS">
+                </mat-form-field>
+                <div *ngIf="errors.last_name" class="invalid-feedback">{{ errors.last_name }}</div>
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>CORREO ELECTRONICO</mat-label>
+                    <input matInput [(ngModel)]="user.email" placeholder="ESCRIBE CORREO" ><!--disabled="editar"-->
+                </mat-form-field>
+                <div *ngIf="errors.email" class="invalid-feedback">{{ errors.email }}</div>
+                
+
+                <mat-form-field class="mat-input" appearance="outline" *ngIf="!editar">  
+                    <mat-label>CONTRASEÑA</mat-label>  
+                    <input matInput [(ngModel)]="user.password" type="{{ inputType_1 }}" placeholder="Escribe contraseña">  
+                    <mat-icon matSuffix class="eye-icon" (click)="showPassword()">{{hide_1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+                <div *ngIf="errors.password" class="invalid-feedback">{{ errors.password }}</div>
+
+                <mat-form-field class="mat-input" appearance="outline" *ngIf="!editar">
+                    <mat-label>CONFIRMAR CONTRASEÑA</mat-label>
+                    <input matInput [(ngModel)]="user.confirmar_password" type="{{ inputType_2 }}" placeholder="confirma contraseña">
+                    <mat-icon matSuffix class="eye-icon" (click)="showPwdConfirmar()">{{hide_2 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </mat-form-field>
+                <div *ngIf="errors.confirmar_password" class="invalid-feedback">{{ errors.confirmar_password }}</div>
+
+                
+                <mat-form-field class="mat-input" appearance="outline">  
+                    <mat-label>FECHA DE NACIMIENTO</mat-label>  
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="user.fecha_nacimiento" (focus)="picker.open()" placeholder="Agregar fecha" (dateChange)="changeFecha($event)" type="string">                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>  
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <div *ngIf="errors.fecha_nacimiento" class="invalid-feedback">{{ errors.fecha_nacimiento}}</div>
+
+               
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>CURP</mat-label>
+                    <input matInput [(ngModel)]="user.curp" placeholder="ESCRIBE CURP">
+                </mat-form-field>
+                <div *ngIf="errors.curp" class="invalid-feedback">{{ errors.curp }}</div>
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>RFC</mat-label>
+                    <input matInput [(ngModel)]="user.rfc" placeholder="ESCRIBE RFC">
+                </mat-form-field>
+                <div *ngIf="errors.rfc" class="invalid-feedback">{{ errors.rfc }}</div>
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>EDAD</mat-label>
+                    <input matInput [(ngModel)]="user.edad" placeholder="ESCRIBE EDAD">
+                </mat-form-field>
+                <div *ngIf="errors.edad" class="invalid-feedback">{{ errors.edad }}</div>
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>TELEFONO</mat-label>
+                    <input matInput [(ngModel)]="user.telefono" mask="(000) 000-0000" placeholder="ESCRIBE TELEFONO">
+                </mat-form-field>
+                <div *ngIf="errors.telefono" class="invalid-feedback">{{ errors.telefono }}</div>
+
+                <mat-form-field class="mat-input" appearance="outline">
+                    <mat-label>OCUPACION</mat-label>
+                    <input matInput [(ngModel)]="user.ocupacion" placeholder="ESCRIBE OCUPACION">
+                </mat-form-field>
+                <div *ngIf="errors.ocupacion" class="invalid-feedback">{{ errors.ocupacion}}</div>
+
+            
+                <div class="section-buttons">  
+                    <button class="btn btn-danger" (click)="regresar()">CANCELAR</button>  
+                    <button *ngIf="!editar" class="btn btn-primary" type="submit" (click)="registrar()">REGISTRAR</button>
+                    <button *ngIf="editar" class="btn btn-primary" type="submit" (click)="actualizar()">Actualizar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
